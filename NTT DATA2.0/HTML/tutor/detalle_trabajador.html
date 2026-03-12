@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CableadosFC | Detalle</title>
+    <link rel="stylesheet" href="../../CSS/tutor.css">
+</head>
+<body>
+    <main class="content">
+        <header class="top-bar">
+            <button class="btn-primary" onclick="window.history.back()">← Volver</button>
+            <h2 id="workerName" style="font-weight: 800;">Tareas del Usuario</h2>
+            <div style="width: 40px;"></div>
+        </header>
+
+        <div class="tutor-kanban">
+            <div class="kanban-column column-pending">
+                <h3>📌 Creadas</h3>
+                <div id="pendingTasks"></div>
+            </div>
+            <div class="kanban-column column-active">
+                <h3>⚡ Iniciadas</h3>
+                <div id="activeTasks"></div>
+            </div>
+            <div class="kanban-column column-finished">
+                <h3>✅ Finalizadas</h3>
+                <div id="completedTasks"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../../JS/tutor.js"></script>
+    <script>
+        const id = new URLSearchParams(window.location.search).get('id');
+        if (id) loadWorkerDetails(id);
+    </script>
+</body>
+</html>

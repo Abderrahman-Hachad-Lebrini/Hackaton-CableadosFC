@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CableadosFC | Acceso</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+        PALETA: Azul pizarra + blanco roto + acento índigo suave
+        Sin gradientes animados, sin blur distractores, sin rebotes.
+        Tipografía clara, espaciado generoso, foco evidente.
+        ============================================================ */
+        :root {
+            --bg:           #F4F6FA;
+            --surface:      #FFFFFF;
+            --border:       #DDE3EF;
+            --border-focus: #4C6EF5;
+            --text-primary: #1A2236;
+            --text-secondary:#5A6580;
+            --accent:       #4C6EF5;
+            --accent-dark:  #3A56D4;
+            --success:      #2BA66B;
+            --error:        #D0393B;
+            --admin-bg:     #F0F2F8;
+            --shadow-sm:    0 1px 3px rgba(26,34,54,.08);
+            --shadow-md:    0 4px 16px rgba(26,34,54,.10);
+            --radius:       10px;
+            --font:         'DM Sans', sans-serif;
+            --font-mono:    'DM Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            /* Sin animaciones de fondo que distraigan */
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .login-wrapper {
+            width: 100%;
+            max-width: 400px;
+            animation: enterUp .3s ease both;
+        }
+
+        @keyframes enterUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- CABECERA: MARCA CLARA --- */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            letter-spacing: .02em;
+            flex-shrink: 0;
+        }
+
+        .brand-text h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .brand-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* --- TARJETA LIMPIA --- */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- TÍTULO DE SECCIÓN --- */
+        .form-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        /* --- CAMPOS --- */
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            letter-spacing: .01em;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--text-primary);
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field input::placeholder { color: #A0A8BE; }
+
+        .field input:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(76,110,245,.12);
+            background: var(--surface);
+        }
+
+        /* --- BOTÓN PRINCIPAL --- */
+        .btn-primary {
+            width: 100%;
+            padding: 13px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background .15s, transform .1s;
+            /* Sin sombra extra que sature visualmente */
+        }
+
+        .btn-primary:hover  { background: var(--accent-dark); }
+        .btn-primary:active { transform: scale(.98); }
+
+        /* --- BOTÓN SECUNDARIO --- */
+        .btn-secondary {
+            width: 100%;
+            padding: 11px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background .15s, color .15s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--admin-bg);
+            color: var(--text-primary);
+        }
+
+        /* --- MENSAJE DE ESTADO --- */
+        .status-msg {
+            font-size: 13px;
+            font-weight: 500;
+            min-height: 20px;
+            margin-top: 10px;
+            text-align: center;
+            /* Color se aplica vía JS: --error o --success */
+        }
+
+        /* --- SEPARADOR ADMIN --- */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 24px 0 20px;
+        }
+
+        .admin-block {
+            text-align: center;
+        }
+
+        .admin-block p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .btn-admin {
+            width: 100%;
+            padding: 11px 16px;
+            background: var(--admin-bg);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background .15s, border-color .15s;
+        }
+
+        .btn-admin:hover {
+            background: #E6EAF6;
+            border-color: var(--accent);
+        }
+
+        /* --- PIE: INDICADOR NTT --- */
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            opacity: .7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="brand">
+        <div class="brand-icon">CFC</div>
+        <div class="brand-text">
+            <h1>CableadosFC</h1>
+            <p>Portal de Tareas Autónomas</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <form id="loginForm">
+            <h2 class="form-title" id="loginTitle">Iniciar sesión</h2>
+
+            <div class="field">
+                <label for="user">Usuario</label>
+                <input type="text" id="user" placeholder="Introduce tu usuario" autocomplete="username" required>
+            </div>
+
+            <div class="field">
+                <label for="pass">Contraseña</label>
+                <input type="password" id="pass" placeholder="Introduce tu contraseña" autocomplete="current-password" required>
+            </div>
+
+            <button type="submit" class="btn-primary" id="btnSubmit">Entrar</button>
+
+            <button type="button" id="btnVolver" class="btn-secondary" style="display:none;" onclick="resetearVista()">
+                ← Volver atrás
+            </button>
+
+            <p class="status-msg" id="statusMsg"></p>
+        </form>
+
+        <div id="seccionTutor">
+            <div class="divider"></div>
+            <div class="admin-block">
+                <p id="adminText">¿Eres administrador? Valídate para gestionar usuarios.</p>
+                <button type="button" onclick="prepararRegistro()" class="btn-admin" id="btnModoRegistro">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Dar de alta a usuarios
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <p class="footer-note">NTT DATA · Plataforma de Inclusión Cognitiva</p>
+</div>
+
+<script src="JS/index.js"></script>
+</body>
+</html>
