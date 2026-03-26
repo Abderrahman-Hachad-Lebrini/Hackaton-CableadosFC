@@ -1,10 +1,12 @@
 # Hackaton-CableadosFC
 
 Este repositoro documenta el progreso del reto Hackaton del equipo Cableados FC compuesto por:
+```
 - Iván Pérez Muñoz(Coordinador del proyecto)
 - Eric Villaplana Ríos(Developer jefe) 
 - Ayman Sekkoumi(Analista/Supervisor)
 - Abderrahman Hachad Lebrini(Redactor/Soporte)
+```
 
 Objetivo del proyecto:
 El objetivo del proyecto es crear una página web diseñada para ayudar a trabajadores con TDAH y TEA (Trastorno del Espectro Autista) 
