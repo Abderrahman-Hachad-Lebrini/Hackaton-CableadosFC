@@ -28,11 +28,13 @@ Durante este periodo, trabajaremos en el diseño, desarrollo y documentación de
 de trabajo en equipo para construir una solución funcional.
 
 Progreso semanal:
-- Semana 1: Esta semana hemos dividido el proyecto en partes y repartido los roles y tareas entre todos los integrantes del equipo. En la parte técnica
-  del proyecto hemos hecho un diagrama de Gantt en una hoja de cálculo, hemos iniciado con un prototipo de prueba de página web y también hemos empezado a
-  crear la base de datos. Cuando acabemos con el proyecto, lo subiremos a una máquina virtual en AWS. 
+- Semana 1: Esta semana hemos dividido el proyecto en partes y repartido los roles y tareas entre todos los integrantes del equipo. En la parte técnica del proyecto hemos hecho un diagrama de Gantt en una hoja de cálculo, hemos iniciado con un prototipo de prueba de página web y también hemos empezado a crear la base de datos. Cuando acabemos con el proyecto, lo subiremos a una máquina virtual en AWS. 
+
+- Semana 2: Esta semana hemos finalizado la página web y la base de datos, también hemos iniciado una instancia ec2 en AWS para subir el proyecto. Hemos instalado Xampp y Apache para poder asignar la web a la ip de la instacia y conectar la base de datos previamente
+creada con la web. Para finalizar, estamos documentando lo realizado durante el proyecto haciendo capturas de todo lo realizado y organizandonos para prepararnos para la presentación de práctica que haremos para prepararnos para luego estar listos a la hora de entregar el proyecto final a Enxarxatec.
 
 Herramientas usadas:
+```
 - AWS(Amazon Web Services)
 - PHP MyAdmin
 - Apache
@@ -41,6 +43,6 @@ Herramientas usadas:
 - HTML 5
 - CSS 3 
 - JavaScript
-
+```
 
 
