@@ -1,0 +1,495 @@
+/* trabajador.css */
+
+/* --- VARIABLES Y TEMAS --- */
+:root {
+    --primary: #6c5ce7;
+    --primary-hover: #5b4bc4;
+    --success: #00b894;
+    --danger: #ff7675;
+    
+    /* Modo Claro (Default) */
+    --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    --bg-card: #ffffff;
+    --bg-sidebar: #1e293b;
+    --bg-topbar: rgba(255, 255, 255, 0.9);
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --border-color: #f1f2f6;
+    --chat-bg: #f8f9fa;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+body.dark-mode {
+    /* Modo Oscuro */
+    --bg-gradient: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+    --bg-card: #2d3436;
+    --bg-sidebar: #0f172a;
+    --bg-topbar: rgba(30, 41, 59, 0.9);
+    --text-main: #f1f2f6;
+    --text-muted: #bdc3c7;
+    --border-color: #444;
+    --chat-bg: #1e272e;
+    --shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    overflow-x: hidden; /* Evita scroll horizontal cuando el menú está oculto */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- SIDEBAR (MENÚ LATERAL) --- */
+.sidebar {
+    width: 280px; 
+    height: 100vh; 
+    background: var(--bg-sidebar);
+    position: fixed; 
+    top: 0; 
+    left: -280px; /* Escondido por defecto */
+    z-index: 5000;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    padding: 30px 20px; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+}
+
+.sidebar.active { 
+    left: 0; /* Se muestra al añadir la clase 'active' */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
+}
+
+.logo-badge {
+    background: var(--primary);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 800;
+}
+
+.close-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 35px; height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    background: var(--danger);
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.menu-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-link:hover {
+    background: rgba(108, 92, 231, 0.2);
+    color: white;
+}
+
+/* --- INTERRUPTORES (TEMA E IDIOMA) --- */
+.theme-switch {
+    margin-top: 5px;
+    padding: 12px 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.theme-switch:hover { 
+    background: rgba(255,255,255,0.15); 
+    color: white;
+}
+
+.logout {
+    margin-top: auto;
+    color: var(--danger) !important;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.content { 
+    padding: 20px; 
+    transition: 0.4s; /* Para que el contenido pueda reaccionar al menú si fuera necesario */
+}
+
+.top-bar {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: var(--bg-topbar); 
+    padding: 15px 25px; 
+    border-radius: 15px; 
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+}
+
+.menu-trigger {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 40px; 
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.menu-trigger:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* --- TARJETAS (TASKS) --- */
+.task-card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Esto hace que los elementos se apilen uno debajo de otro */
+    align-items: flex-start; /* Alinea todo a la izquierda */
+    box-shadow: var(--shadow);
+    width: 100%;
+    height: auto;   
+    gap: 10px;
+    overflow: hidden;
+}
+
+.task-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.status-badge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: var(--border-color);
+    color: var(--text-muted);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.timer-active {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-start { background: var(--success); color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+.btn-start:hover { opacity: 0.9; transform: scale(1.05); }
+
+.btn-finish { background: var(--danger); color: white; border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+.btn-finish:hover { opacity: 0.9; transform: scale(1.05); }
+
+.btn-cancel { background: var(--border-color); color: var(--text-main); border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+.btn-cancel:hover { background: #e2e2e2; }
+
+/* --- MODAL --- */
+.modal {
+    display: none; /* Se activa vía JS con display: flex */
+    position: fixed;
+    z-index: 6000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 25px;
+    width: 95%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    outline: none;
+    transition: 0.3s;
+}
+
+.modal-content input:focus {
+    border-color: var(--primary);
+}
+
+/* --- CHAT --- */
+.chat-container {
+    max-width: 900px;
+    margin: 0 auto;
+    height: 75vh;
+    background: var(--bg-card);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    background: var(--chat-bg);
+    overflow-y: auto;
+}
+
+.chat-input-area {
+    padding: 20px;
+    background: var(--bg-card);
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    outline: none;
+}
+
+/* --- UTILIDADES --- */
+.hidden { display: none !important; }
+.empty-msg { text-align: center; padding: 40px; color: var(--text-muted); font-weight: 600; }
+
+/* Ajustes para el contenedor de botones en la tarea */
+.control-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.task-info {
+    width: 100%;
+    min-width: 0;
+}
+
+/* 3. Forzamos el salto de línea para esas cadenas largas de texto */
+.task-info h4, 
+.task-info p {
+    display: block;
+    width: 100%;
+    overflow-wrap: break-word; /* Hace que el texto baje de línea */
+    word-break: break-word;    /* Compatible con más navegadores */
+    white-space: normal;       /* Permite saltos de línea normales */
+    margin-bottom: 5px;
+}
+
+/* 4. Si quieres que los botones o la fecha también tengan su propio espacio */
+.task-controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Mueve los botones a la esquina inferior derecha */
+    margin-top: 10px;
+    border-top: 1px solid var(--border-color); /* Opcional: una línea divisoria */
+    padding-top: 10px;
+}
+
+/* Estilo para el botón de eliminar (la cruz) */
+.btn-delete {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Contenedor principal del chat */
+#chatBox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Un poco más de espacio entre mensajes */
+    padding: 20px;
+    overflow-y: auto;
+    background: var(--chat-bg);
+}
+
+/* Estilo base de cada fila de mensaje */
+.message {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+/* TUS MENSAJES (TRABAJADOR -> DERECHA) */
+.worker-msg {
+    justify-content: flex-end; /* Empuja el contenido a la derecha */
+}
+
+.worker-msg .msg-bubble {
+    background-color: var(--primary); /* Usamos tu variable de color principal */
+    color: white;
+    border-radius: 18px 18px 0px 18px; /* Bordes más redondeados y modernos */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* MENSAJES DEL TUTOR (IZQUIERDA) */
+.tutor-msg {
+    justify-content: flex-start; /* Empuja el contenido a la izquierda */
+}
+
+.tutor-msg .msg-bubble {
+    background-color: var(--bg-card); /* Color según el tema claro/oscuro */
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 18px 18px 18px 0px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Burbuja de texto común */
+.msg-bubble {
+    max-width: 75%;
+    padding: 12px 16px;
+    position: relative;
+    word-wrap: break-word; /* Evita que textos largos rompan el diseño */
+}
+
+.msg-bubble p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.msg-time {
+    font-size: 0.65rem;
+    display: block;
+    margin-top: 6px;
+    opacity: 0.7;
+    text-align: right;
+}
+
+/* --- ESTILO DEL BOTÓN ENVIAR --- */
+.btn-enviar {
+    background-color: #28a745; /* Verde Tutor */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px; /* Forma redondeada */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-enviar:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-enviar:active {
+    transform: translateY(0);
+}
+
+/* --- AJUSTE DEL ÁREA DE INPUT --- */
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+    background: var(--bg-card);
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid var(--input-border);
+    margin-top: 15px;
+}
+
+#messageInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 5px 15px;
+    color: var(--text-main);
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}

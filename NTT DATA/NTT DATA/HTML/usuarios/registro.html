@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Alta de Usuario</title>
+    <link rel="stylesheet" href="../../CSS/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient">
+    <div class="fade-in-page">
+        <div class="glass-card">
+            <header class="logo-section">
+                <div class="logo-badge">WA</div>
+                <h1>Nuevo Usuario</h1>
+                <p class="tagline">Introduce las credenciales de acceso</p>
+            </header>
+
+            <form id="registroForm" class="login-form">
+                <div class="input-group">
+                    <input type="text" id="regNombre" placeholder="Nombre de usuario (Login)" required>
+                    
+                    <input type="text" id="regNombreCompleto" placeholder="Nombre completo" required>
+                    
+                    <input type="password" id="regPass" placeholder="Contraseña nueva" required>
+
+                    <select id="regRol" class="select-field">
+                        <option value="trabajador">Rol: Trabajador</option>
+                        <option value="tutor">Rol: Tutor</option>
+                        <option value="admin">Rol: Administrador</option>
+                    </select>
+
+                    <input type="text" id="regEmpresa" placeholder="Empresa" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Guardar Usuario</button>
+                <button type="button" onclick="window.history.back()" class="btn-secondary">Volver</button>
+            </form>
+
+            <p id="mensaje" class="status-msg"></p>
+        </div>
+    </div>
+    <script src="../../JS/registro.js"></script>
+</body>
+
+</html>

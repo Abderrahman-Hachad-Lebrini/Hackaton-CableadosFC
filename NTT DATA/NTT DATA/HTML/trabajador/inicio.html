@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Inicio</title>
+    <link rel="stylesheet" href="../../CSS/trabajador.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-badge">WA</div>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <nav class="menu-items">
+            <a href="inicio.html" class="menu-link">🏠 Inicio (Crear)</a>
+            <a href="tareas_finalizadas.html" class="menu-link">✅ Tareas Finalizadas</a>
+            <a href="chat.html" class="menu-link">💬 Chat Tutor</a>
+
+            <div class="theme-switch" onclick="toggleDarkMode()">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+            </div>
+            <a href="../../index.html" class="menu-link logout">🚪 Salir</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="top-bar">
+            <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+            <h2>Gestión de Tareas</h2>
+            <button class="btn-primary" onclick="openModal()">+ Nueva Tarea</button>
+        </header>
+
+        <section id="sec-inicio">
+            <div id="activeTasksContainer"></div>
+        </section>
+    </main>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <h4>Nueva Tarea</h4>
+            <input type="text" id="taskInput" placeholder="Título de la tarea">
+            
+            <textarea id="taskDescInput" placeholder="Añade una descripción detallada..." 
+                style="width: 100%; margin-top: 10px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-family: inherit; resize: vertical; min-height: 80px;"></textarea>
+            
+            <div class="modal-actions" style="margin-top: 15px;"> 
+                <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button class="btn-primary" onclick="createTask()">Crear Tarea</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../JS/trabajador.js"></script>
+</body>
+
+</html>

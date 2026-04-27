@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Inclusión Cognitiva</title>
+    <link rel="stylesheet" href="CSS/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient">
+
+    <div class="fade-in-page">
+        <div class="glass-card">
+            <header class="logo-section">
+                <div class="logo-badge">WA</div>
+                <h1>WebAcces</h1>
+                <p class="tagline">Portal de Tareas Autónomas</p>
+            </header>
+
+            <form id="loginForm" class="login-form">
+    <h2 id="loginTitle">Iniciar Sesión</h2>
+    <div class="input-group">
+        <input type="text" id="user" placeholder="Usuario" required>
+        <input type="password" id="pass" placeholder="Contraseña" required>
+    </div>
+    <button type="submit" class="btn-primary" id="btnSubmit">Entrar</button>
+    
+    <button type="button" id="btnVolver" class="btn-secondary" style="display: none;" onclick="resetearVista()">
+        Volver atrás
+    </button>
+</form>
+
+            <div id="seccionTutor" class="admin-section admin-divider">
+                <p id="adminText">¿Eres admin? Valídate para crear usuarios</p>
+                <button type="button" onclick="prepararRegistro()" class="card-btn register" id="btnModoRegistro">
+                    <span class="emoji">📝</span> Dar de alta a usuarios
+                </button>
+            </div>
+        </div> 
+    </div>
+
+    <script src="JS/index.js"></script>
+</body>
+</html>

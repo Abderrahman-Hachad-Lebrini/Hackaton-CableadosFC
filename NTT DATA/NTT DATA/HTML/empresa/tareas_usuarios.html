@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Gestión de Tareas</title>
+    <link rel="stylesheet" href="../../CSS/trabajador.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <style>
+        /* Ajustes para que el modal sea idéntico a tu referencia visual */
+        .modal-content {
+            background: var(--bg-card, #ffffff);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        /* Unificación de cuadros de texto del modal */
+        .modal-content input[type="text"],
+        .modal-content textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border: 1px solid #e1e4e8;
+            border-radius: 12px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            background-color: #f8f9fa;
+            color: #333;
+            transition: all 0.3s ease;
+            box-sizing: border-box; /* Mismo ancho exacto */
+            display: block;
+            outline: none;
+        }
+
+        .modal-content textarea {
+            height: 100px;
+            resize: none; /* Cuadro fijo como el de nombre */
+        }
+
+        .modal-content input:focus, .modal-content textarea:focus {
+            border-color: #6c5ce7;
+            background-color: #fff;
+        }
+
+        /* Estilo de botones del modal */
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: #f1f2f6;
+            color: #57606f;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-primary-modal {
+            flex: 2;
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Contenedor de tareas estilo trabajador */
+        .tasks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-badge">WA</div>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <nav class="menu-items">
+            <a href="tareas.html" class="menu-link">🏠 Volver a Lista</a>
+            <div class="theme-switch" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+</div>
+            <a href="../../index.html" class="menu-link logout">🚪 Salir</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="top-bar">
+            <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+            <h2 id="userNameTitle">Gestionando...</h2>
+            
+            <div style="display: flex; gap: 10px;">
+                <button id="btnLock" class="btn-primary" style="background: #e74c3c; border: none;" onclick="toggleUserPermission()">
+                    Cargando...
+                </button>
+                <button class="btn-primary" onclick="openModal()">+ Nueva Tarea</button>
+            </div>
+        </header>
+
+        <section id="sec-inicio">
+            <div id="activeTasksContainer" class="tasks-container">
+                </div>
+        </section>
+    </main>
+
+    <div id="taskModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Asignar Tarea</h3>
+            <input type="text" id="taskInput" placeholder="Nombre de la tarea">
+            <textarea id="taskDescInput" placeholder="Descripción..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                <button class="btn-primary-modal" onclick="createTask()">Asignar Tarea</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../JS/empresa_gestion.js"></script>
+</body>
+</html>

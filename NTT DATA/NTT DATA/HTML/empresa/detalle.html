@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Gestión Empresa</title>
+    <link rel="stylesheet" href="../../CSS/tutor.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-badge">WA</div>
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <nav class="menu-items">
+        <a href="tareas.html" class="menu-link">
+            <span class="icon">👥</span> Trabajadores
+        </a>
+        <a href="detalle.html" class="menu-link active" id="nav-detalle">
+            <span class="icon">🔍</span> Detalle
+        </a>
+        <a href="chat_usuarios.html" class="menu-link">
+            <span class="icon">💬</span> Chat privado
+        </a>
+        <div class="menu-link theme-switch" onclick="toggleTheme()" style="cursor:pointer;">
+            <span id="theme-icon">🌙</span> 
+            <span id="theme-text">Modo Oscuro</span>
+        </div>
+        <a href="../../index.html" class="menu-link logout">
+            <span class="icon">🚪</span> Salir
+        </a>
+    </nav>
+</aside>
+
+<main class="content">
+    <header class="top-bar">
+        <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+        <h2 class="panel-title">Gestión de Empresa</h2>
+    </header>
+
+    <section id="sec-trabajadores" class="container">
+        <h3 class="section-title">Personal de la Empresa</h3>
+        <div id="listaContactos" class="workers-grid">
+            <p style="text-align: center; color: gray;">Cargando lista de personal...</p>
+        </div>
+    </section>
+
+    <section id="vistaTareas" class="container" style="display: none;">
+        <div class="vista-header">
+            <button class="btn-back" onclick="location.reload()">⬅ Volver</button>
+            <h3 id="userNameTitle">Gestión de: ...</h3>
+            <button id="btnLock" class="btn-primary" onclick="toggleUserPermission()">Cargando...</button>
+        </div>
+
+        <h4 style="margin-top: 20px;">Tareas Activas</h4>
+        <div id="activeTasksContainer" class="task-list-vertical">
+            </div>
+    </section>
+</main>
+
+<script src="../../JS/empresa_gestion.js"></script>
+</body>
+</html>

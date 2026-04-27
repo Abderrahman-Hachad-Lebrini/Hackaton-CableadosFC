@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Chat Privado</title>
+    <link rel="stylesheet" href="../../CSS/tutor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-badge">WA</div>
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <nav class="menu-items">
+        <a href="inicio.html" class="menu-link active">👥 Trabajadores</a>
+        <a href="chat_usuarios.html" class="menu-link">💬 Chat privado</a>
+        
+        <div class="theme-switch" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span> 
+            <span id="theme-text">Modo Oscuro</span>
+        </div>
+
+        <a href="../../index.html" class="menu-link logout">🚪 Salir</a>
+    </nav>
+</aside>
+
+<main class="content">
+    <header class="top-bar">
+        <a href="chat_usuarios.html" class="menu-trigger">⬅️</a>
+        <h2 id="chatHeader">Chat</h2>
+        <div style="width: 40px;"></div> </header>
+
+    <section class="chat-container">
+        <div id="chatBox" class="chat-box">
+            <p>Cargando mensajes...</p>
+        </div>
+
+        <form id="chatForm" class="chat-input-area">
+            <input type="text" id="messageInput" placeholder="Escribe un mensaje..." required autocomplete="off">
+            <button type="submit" class="btn-primary">Enviar</button>
+        </form>
+    </section>
+</main>
+
+<script src="../../JS/tutor.js"></script>
+</body>
+</html>

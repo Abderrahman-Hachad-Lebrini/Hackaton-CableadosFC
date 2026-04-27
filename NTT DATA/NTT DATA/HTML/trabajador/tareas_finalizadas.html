@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Finalizadas</title>
+    <link rel="stylesheet" href="../../CSS/trabajador.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-badge">WA</div>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <nav class="menu-items">
+            <a href="inicio.html" class="menu-link">🏠 Inicio (Crear)</a>
+            <a href="tareas_finalizadas.html" class="menu-link">✅ Tareas Finalizadas</a>
+            <a href="chat.html" class="menu-link">💬 Chat Tutor</a>
+            
+            <div class="theme-switch" onclick="toggleDarkMode()">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+            </div>
+            <a href="../../index.html" class="menu-link logout">🚪 Salir</a>
+        </nav>
+    </aside>
+
+    <main class="content">
+    <header class="top-bar">
+        <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+        <h2>Tareas Finalizadas</h2> 
+        <div style="width: 40px;"></div>
+    </header>
+
+    <section id="sec-finalizadas">
+        <div id="completedTasksContainer"></div>
+    </section>
+</main>
+
+    <script src="../../JS/trabajador.js"></script>
+</body>
+</html>

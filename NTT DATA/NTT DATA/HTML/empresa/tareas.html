@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Gestión Empresa</title>
+    <link rel="stylesheet" href="../../CSS/trabajador.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap">
+    <style>
+        .grid-trabajadores {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+        /* Estilo para imitar las tarjetas del tutor */
+        .user-card {
+            background: var(--card-bg, #fff);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #007bff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .user-info h4 { margin: 0; color: var(--text-color); font-size: 1.1rem; }
+        .company-tag { 
+            color: #007bff; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            margin: 5px 0;
+        }
+        .login-tag { opacity: 0.6; font-size: 0.75rem; }
+    </style>
+</head>
+
+<body>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-badge">WA</div>
+            <button class="close-btn" onclick="toggleMenu()">×</button>
+        </div>
+        <nav class="menu-items">
+            <a href="tareas.html" class="menu-link active">
+                <span class="icon">👥</span> Trabajadores
+            </a>
+            <a href="detalle.html" class="menu-link" id="nav-detalle">
+                <span class="icon">🔍</span> Detalle
+            </a>
+            <a href="chat_usuarios.html" class="menu-link">
+                <span class="icon">💬</span> Chat privado
+            </a>
+            <div class="menu-link" onclick="toggleDarkMode()" style="cursor:pointer;">
+                <span id="theme-icon">🌙</span> 
+                <span id="theme-text">Modo Oscuro</span>
+            </div>
+            <a href="../../index.html" class="menu-link logout">
+                <span class="icon">🚪</span> Salir
+            </a>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="top-bar">
+            <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+            <h2>Panel de Empresa</h2>
+        </header>
+
+        <section id="sec-inicio">
+            <div style="margin-bottom: 25px;">
+                <h3 style="margin: 0;">Seleccionar Trabajador</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem;">Visualiza la información detallada y gestiona sus tareas.</p>
+            </div>
+
+            <div id="lista-usuarios" class="grid-trabajadores">
+                <p id="loading-msg">Cargando trabajadores...</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const PHP_URL = '../../PHP/obtener_trabajadores.php';
+
+        async function cargarTrabajadores() {
+            const container = document.getElementById('lista-usuarios');
+            
+            try {
+                const response = await fetch(PHP_URL);
+                const trabajadores = await response.json();
+
+                if (trabajadores.error) {
+                    container.innerHTML = `<p style="color:red;">Error: ${trabajadores.error}</p>`;
+                    return;
+                }
+
+                if (trabajadores.length === 0) {
+                    container.innerHTML = `<p style="color:gray;">No hay trabajadores registrados.</p>`;
+                    return;
+                }
+
+                container.innerHTML = trabajadores.map(user => `
+                    <div class="user-card">
+                        <div class="user-info">
+                            <small class="login-tag">${user.nombre}</small>
+                            <h4>${user.nombre_completo}</h4>
+                            <p class="company-tag">🏢 ${user.empresa}</p>
+                            <small style="opacity:0.5;">ID Sistema: #${user.id}</small>
+                        </div>
+                        <button class="btn-primary" onclick="gestionar(${user.id})" style="width:100%; margin-top:10px;">
+                            ⚙️ Gestionar Tareas
+                        </button>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                container.innerHTML = `<p>⚠️ Error de conexión con el servidor.</p>`;
+            }
+        }
+
+        function gestionar(id) {
+            window.location.href = `tareas_usuarios.html?id=${id}`;
+        }
+
+        function toggleMenu(event) {
+            if (event) event.stopPropagation(); 
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) sidebar.classList.toggle('active');
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+            document.getElementById('theme-text').innerText = isDark ? 'Modo Claro' : 'Modo Oscuro';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').innerText = '☀️';
+                document.getElementById('theme-text').innerText = 'Modo Claro';
+            }
+            cargarTrabajadores();
+        });
+    </script>
+</body>
+</html>

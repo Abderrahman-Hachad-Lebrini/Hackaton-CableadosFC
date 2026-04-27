@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAcces | Panel Tutor</title>
+    <link rel="stylesheet" href="../../CSS/tutor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-badge">WA</div>
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <nav class="menu-items">
+        <a href="inicio.html" class="menu-link active">👥 Trabajadores</a>
+        <a href="chat_usuarios.html" class="menu-link">💬 Chat privado</a>
+        <div class="theme-switch" onclick="toggleTheme()">
+            <span id="theme-icon">🌙</span> 
+            <span id="theme-text">Modo Oscuro</span>
+        </div>
+        <a href="../../index.html" class="menu-link logout">🚪 Salir</a>
+    </nav>
+</aside>
+
+<main class="content">
+    <header class="top-bar">
+        <button class="menu-trigger" onclick="toggleMenu(event)">☰</button>
+        <h2 class="panel-title">Panel de Trabajadores</h2>
+        <div class="spacer"></div>
+    </header>
+
+    <section id="sec-trabajadores" class="container">
+        <h3 class="section-title">Lista de Trabajadores Asignados</h3>
+        <div class="workers-grid" id="listaContactos">
+            <p>Buscando trabajadores en la base de datos...</p>
+        </div>
+    </section>
+
+    <section id="vistaTareas" class="container" style="display: none;">
+        <div class="vista-header">
+            <button class="btn-back" onclick="cerrarTareas()">⬅ Volver</button>
+            <h3 id="nombreTrabajadorSeleccionado">Tareas de: ...</h3>
+        </div>
+
+        <div class="kanban-board">
+            <div class="kanban-column">
+                <h4 class="col-title status-pending">Pendientes</h4>
+                <div id="col-pendiente" class="task-list"></div>
+            </div>
+            <div class="kanban-column">
+                <h4 class="col-title status-progress">En Curso</h4>
+                <div id="col-en-curso" class="task-list"></div>
+            </div>
+            <div class="kanban-column">
+                <h4 class="col-title status-completed">Finalizadas</h4>
+                <div id="col-finalizada" class="task-list"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="../../JS/tutor.js"></script>
+</body>
+</html>
